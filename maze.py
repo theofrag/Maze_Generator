@@ -94,7 +94,7 @@ class Grid:
     
     def outputMaze(self):
         
-        img=Image.new('RGB',(self.row*2,self.col*2),(0,0,0))
+        img=Image.new('RGB',(self.col*2,self.row*2),(0,0,0))
         for i in range(self.row):
             for j in range(self.col):
                 img.putpixel((2*j,2*i), (255,255,255))
@@ -106,7 +106,7 @@ class Grid:
         img.save('maze.png')
 
 
-grid=Grid(100,100)
+grid=Grid(5,50)
 grid.makeMaze()
 grid.outputMaze()
 
