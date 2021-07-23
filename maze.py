@@ -5,7 +5,7 @@ from PIL import Image
 class Cell:
     def __init__(self,x,y):
         self.visited=False
-        self.walls={'Up':True,'Down':True,'Right':True,'Left':True}
+        self.walls={'Down':True,'Right':True}
         #Coordinates of the cell
         self.x=x
         self.y=y
@@ -69,15 +69,11 @@ class Grid:
                 #break walls
                 if self.x-i<0 and self.y-j==0:
                     self.grid[self.x][self.y].changeState('Down')
-                    self.grid[i][j].changeState('Up')
                 elif self.x-i>0 and self.y-j==0:
-                    self.grid[self.x][self.y].changeState('Up')
                     self.grid[i][j].changeState('Down')
                 elif self.x-i==0 and self.y-j<0:
                     self.grid[self.x][self.y].changeState('Right')
-                    self.grid[i][j].changeState('Left')
                 elif self.x-i==0 and self.y-j>0:
-                    self.grid[self.x][self.y].changeState('Left')
                     self.grid[i][j].changeState('Right')
                 #update current position
                 self.x=i
@@ -102,11 +98,11 @@ class Grid:
                     img.putpixel((2*j+1,2*i),(255,255,255))
                 if self.grid[i][j].getState('Down')==False:
                     img.putpixel((2*j,2*i+1),(255,255,255))
-    
+
         img.save('maze.png')
 
 
-grid=Grid(5,50)
+grid=Grid(5,5)
 grid.makeMaze()
 grid.outputMaze()
 
